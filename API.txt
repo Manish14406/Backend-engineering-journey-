@@ -1,0 +1,30 @@
+API = Application programming interface - allows us to build application that talk to each other
+
+Types of APIs
+-REST API - http JSON
+-SOAP API - alternative to REST /xml
+-GraphQL
+-gRPC - google remote procedure call - protocol buffers (commmon for microservice architecture)
+-Web-socket (bidirectional) - real time application(chat,notification)
+
+------------------------------------------------------------------------------------------------
+
+REST full API
+-http methods
+-endpoints
+-http responses
+-JSON
+
+-JSON---javascript object notation 
+-We can have-string,number,objects,arrays,boolean,null,
+{
+    "name":"Manish",
+    "age":30
+}
+
+REST API
+-http method - GET (retrieve data from server)-when I visit a server it is a get request 
+-resource    - users (JSON)
+-endpoint    - method + path (url)
+
+URL structurees

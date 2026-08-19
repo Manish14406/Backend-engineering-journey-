@@ -1,0 +1,92 @@
+┌───────────────────────────────────────────────┐
+│        DAY 1: BACKEND MENTAL MODEL             │
+│                                               │
+│  Client ↔ Server                               │
+│  Request → Processing → Response               │
+│  Statelessness • Concurrency Basics            │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 2: HTTP & REST COMMUNICATION        │
+│                                               │
+│  HTTP Methods                                 │
+│  Status Codes                                 │
+│  Headers vs Body                              │
+│  JSON as Contract                             │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 3: API DESIGN THINKING              │
+│                                               │
+│  Resource-Oriented APIs                       │
+│  Endpoint Naming                              │
+│  Predictable Inputs / Outputs                 │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 4: DATA & DATABASE THINKING         │
+│                                               │
+│  Schema Design                                │
+│  Relationships                                │
+│  CRUD as Business Logic                       │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 5: AUTHENTICATION & AUTHORIZATION   │
+│                                               │
+│  Identity Flow                                │
+│  Sessions vs JWT                              │
+│  Protected Resources                          │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 6: BACKEND ARCHITECTURE             │
+│                                               │
+│  Routes • Services • Utils                    │
+│  Separation of Concerns                       │
+│  Business Logic Centralization                │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 7: VALIDATION & ERROR HANDLING      │
+│                                               │
+│  Input Validation                             │
+│  Graceful Failures                            │
+│  Meaningful Error Responses                   │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 8: ASYNC & BACKGROUND TASKS         │
+│                                               │
+│  Sync vs Async                                │
+│  Long Tasks off Request Cycle                 │
+│  Retry & Failure Awareness                    │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 9: DEPLOYMENT & ENVIRONMENTS        │
+│                                               │
+│  Local vs Production                          │
+│  Environment Variables                        │
+│  Secrets & Configuration                     │
+└───────────────────────────────────────────────┘
+                    │
+                    ▼
+┌───────────────────────────────────────────────┐
+│        DAY 10: PRODUCT & TRUST THINKING        │
+│                                               │
+│  Reliability                                 │
+│  Logging & Observability                     │
+│  Backend as a Trust System                   │
+└───────────────────────────────────────────────┘
+
+
+Build → Prove → Signal → Validate → Then sell.

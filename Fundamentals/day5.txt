@@ -1,0 +1,23 @@
+Request body and schemas 
+-goal-(Let my backend automatically validates input and reject bad request before even my logic runs)
+
+Schema - A strict contract that defines what valid input looks like 
+pydantic - validation systems
+basemodel - blueprint
+Your class - input contract 
+FastAPI - Uses it automatically
+
+from pydantic import BaseModel,Field
+
+class Idcreate(BaseModel):
+    title : str = Field(...,min_length=5)
+    description : str = Field(...,min_length=20)
+
+The work flow :
+request JSON
+   |
+schema validation
+   | 
+Function recieves clean data 
+   |
+logic runs safely

@@ -1,0 +1,21 @@
+01> Input validation 
+02> Raising errors intentionally
+03> Returning the correct http status code 
+04> Clear predictable responses 
+
+
+4.1--------------------------------------------------------------------
+Input validation    Mental - model 
+                    (Routing decides which function to run and validation decides whether the logic should run or not)
+
+4.2----------------------------------------------
+Error handling 
+   -In FastAPI, backend errors are handled using HTTPException, which returns an HTTP status code (machine-readable) and a message (human-readable).
+    If errors are not communicated using proper status codes, systems like frontends or automation cannot reliably understand or react to backend failures.
+
+4.3---------------------------------------------------
+Returning the correct http status code 
+ - The backend should never return 200 Ok when their is a logical error
+   Client side error should communicate with 4xx error
+   400 status code is used for invalid input 
+   404 status code should be returned when the input is valid but the resource does not exist

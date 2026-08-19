@@ -1,0 +1,71 @@
+HTTP - hyper text transfer protocol
+2.1
+It is the contract which defines how client
+ and backend communicate using request and response
+------------------------------------------------------------------------------------
+2.2
+What an HTTP request actually contain
+HTTP - it is the structured message with the defined parts 
+Method - which action to take place
+URL(path) - what resources it is targetted to 
+headers - meta data about the request 
+body - actual data (optional)
+
+Method
+-GET
+-POST
+-PUT
+-DELETE 
+
+URL 
+-it is the actual path
+ex : /user
+     /order/123
+
+headers - these contains the content type,authorization details and the client details
+
+body - data sent by the client often in JSON format
+ex :  {"name" : "manish","email":"manish@gmail.com"}
+-------------------------------------------------------------------------------------------------
+2.3  What does an http response mean?
+HTTP responses results to the request through the 
+status codes and the optional response data 
+-----------------------------------------------------------------------
+2.4 Status codes are meaning,Not numbers 
+3-Types
+-2xx The request was handled successfully
+  200 - OK
+  200 - created
+
+-4xx The client must fix something
+  400 - Bad request
+  401 - Unauthorised
+  404 - Not found
+
+-5xx The internal server error 
+  500 - internal server error
+
+HTTP status code gives meaning to the responses
+2xx - success
+4xx - client error
+5xx - server error
+------------------------------------------------------------------------------
+2.5 HTTP methods 
+HTTP method tells the backend what the client intend to do
+GET    - read
+POST   - create
+PUT    - update
+DELETE - remove
+
+example : Method + url 
+GET/users  = read users
+POST/users = create users 
+
+Mental model of day 2 
+
+client         ->    backend             ->    HTTP response
+HTTP-request     validation,rules,db          status codes,optional response data 
+-method   
+-url
+-headers
+-body

@@ -1,0 +1,50 @@
+Request -> store -> retrieve data later 
+(core idea - is to store idea in database)
+
+So basically our architecture became 
+
+Request 
+  |
+schema validation  (validates)
+  |
+backend-logic
+  |
+Data-base          (stores-data)  Model-storage structure 
+  |
+response
+
+why can't we use list to store data rather then the data-base
+It is because as the server stops the data's stored in the python list is lost but in the db
+the data is stored permanently and it also permits quering,accessing.
+
+SQLite (it is a simple file db )
+SQLAlchemy - it is the tool-kit 
+
+-----------------------------------------------------------------------------------------
+ORM - object relational mapper
+-It uses python class to right the code rather then raw SQL
+-In ORM the python class refers to one database table
+
+Database         python orm 
+Table            python class
+Column           class attributes 
+Row              object 
+
+
+------------------------------------------------------------------------------------------
+Ideas - permanent storage
+Engine - connection system
+SessionLocal - opens Db sessions 
+
+How backend speaks with db
+
+open connection
+send query
+recieve the result 
+close connection
+
+
+Database -TABLE
+where each row is one record/idea
+and column is one property
+

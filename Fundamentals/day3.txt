@@ -1,0 +1,89 @@
+Rest and the first real backend code 
+
+
+3.1----------------------------------------------------------------------------------
+    -What is the resource 
+    -Why url's represent nouns 
+    -Why methods represent actions
+
+    Rest is the way of naming and accesing the things in the backend using HTTP
+    Things = resources 
+    Action = HTTP methods
+
+    where as resource is the real world thing which is represented through noun
+    in url's 
+    resources are actually plurals 
+    /users
+    /products 
+
+    Method tells the action 
+    GET /users
+
+    ----(((Resource + method = meaning)))-----
+            example :   GET /resources/5
+                        -- read->product with id 5
+
+
+3.2-------------------------------------------------------------------------------------
+      FastAPI service object : app = FastAPI()  - backend service object  - app only recieves and routes 
+      for example (GET /orders) ->get orders
+      ------Main concept app is already running...The request  just arrives 
+      app are long running backend service and function are just request handlers
+
+3.3--------------------------------------------------------------------------------------
+ROUTING - How the app chooses the function 
+
+            what is routing ? It is the set of rules that map HTTP request and url to the function 
+            WHat happens when the request arrives ? It checks the type of method then looks for path then call the function 
+             ^ 
+             |
+@app.get(/orders)
+def get_orders():  
+   ....
+            If no rule matches the server returns 404 error basically that's a server error not a error code 
+
+Conclusion : When the request arrives the app reads or extracts the HTTP method and path and based on the set of routing rules it maps it to a function.
+
+3.4-------------------------------------------------------------------------------------
+How data enters a function?  How values from the http request becomes a function parameter?
+
+            Their are only three ways the data enters the handler 
+            01>Path parameter
+            02>Query parameter
+            03>Body
+
+    01> Path parameter 
+            GET /orders/5
+            @app.get("/orders:{order_id}")
+            def get_orders(order_id:int):
+                return{"order_id":order_id}
+
+            In the above : -{order_id} is the placeholder, FastAPI extracts 5,passes it to a function return the order_id = 5
+                           -Path decides the value
+
+    02> Query parameter(data comes after ?)
+           GET /orders?status=pending
+
+           @app.get("/orders")
+           def get_orders(status:str):
+            return{"status":status}
+
+            In the above : -status pending is read from URL, FASTapi injects it, status = pending, 
+                           -query is decided by value
+
+    03> Body parameters(data comes from request body)
+        Example request:
+        POST /orders
+            {
+                "item":"soap",
+                "qty":8 
+            }
+        code:
+            @app.post("/orders")
+            def create_orders(order: dict):
+                return order
+
+            In the above : -JSON is read, converted into function parameter,python code,{"item":"soap","qty":8}
+                           -Body decides the value 
+            
+            

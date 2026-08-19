@@ -1,0 +1,51 @@
+Today we are building a complete end-point [Post /ideas]
+Request-
+-schema validation
+-open db session 
+-create row
+-save it to sql-lite
+-return saved data(real-id)
+
+-------FastAPI needs a database session to connect with sql-lite
+But we do not need to setup the each session manually as the request arrived 
+We must setup it manually
+-------So we create session provides 
+
+            chunk-1 ----DB-sesion provider(connector)----
+Function-opens db sessions
+        -gives it to end point 
+        -closes after the request 
+Now we will code database.py file (contains the engine and session factory("How to reach db"))
+*****************************
+from sqlaclchemy.orm import Session 
+def get_db():
+    db = SessionLocal()    # opens a db session
+    try:
+        yield db           # serves till one endpoint
+    finally:
+        db.close()         # closes after each session 
+**************************************************
+Human understanding - (opens DB session,let the request use it,closes the session)
+
+            chunk -2 ---Input Validation(schemas validate inputs and db store data)------
+code----------------------------
+******************************
+from pydantic import BaseModel,Field
+class IdeaCreate(BaseModel):
+    title: str = Field(...min_length = 5)
+    description: str = Field(...min_Length = 5)
+**********************************
+request must contain title and description 
+Invalid input never  
+
+            chunk -3 ----Translate request -->data-base (The actual-api)
+from fastapi import FastAPI,Depends,status
+from sqlachemy.orm import session
+
+from database import get_db
+from models import Idea
+from schema create IdeaCreate
+
+app = FastAPI()
+
+

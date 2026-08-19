@@ -1,0 +1,49 @@
+Instagram Bio / Ads / Links
+        |
+        v
+  Landing Page (HTML/CSS/React)
+        |
+        v
+ Lead Capture API  ───────────────▶ Database / Google Sheets
+        |
+        v
+ Payment Checkout (Razorpay/Stripe)
+        |
+        v
+ Webhook Listener (FastAPI)
+        |
+        ├── Verify payment signature
+        ├── Save order in DB
+        └── Trigger automation
+               |
+               v
+        Email / WhatsApp API
+               |
+               v
+        Product Delivery Link / Course Access
+
+
+Students / Startups / Colleges (Users)
+                |
+                v
+        🌐 Frontend Web App
+   (Forms, Dashboards, Login, Views)
+                |
+                v
+        ⚙️ API Layer (FastAPI Backend)
+                |
+   ------------------------------------
+   |            |             |
+   v            v             v
+Auth Module   Idea Module   Pitch Module
+(Login/JWT)   (Submit/Edit) (Review/Status)
+   |            |             |
+   ------------------------------------
+                |
+                v
+            🗄️ Database
+ (Users, Ideas, Pitches, Reviews, Roles)
+                |
+                v
+        📩 Notification System
+     (Email / WhatsApp / In-app alerts)

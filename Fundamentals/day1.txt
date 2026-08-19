@@ -1,0 +1,25 @@
+
+
+Topic 1.1 service vs backend
+script - start->run once->Exceptions
+backend - long running service that handles many unknown requests 
+
+Topic 1.2 Backend is a service not a program
+service - it runs even if error happens 
+backend it is a service it handles many of the users and 
+runs even if their is error by handling them and which must survive
+
+Topic 1.3 Backend always assumes bad input
+Backend treats every request as untrusted input and validates before processing 
+
+Topic 1.4 Request-response cycle
+Request->validation->Decision/logic->response 
+
+Topic 1.5 State vs stateless
+State is the data across request cycle and backend is stateless as the data is should
+be stored in persistent state(stored permanently) db to handle multiple users 
+
+("from PACKAGE import THING"
+If THING starts with CapitalLetter: It's probably a Class
+If THING is snake_case: It's probably a function/variable
+If THING is ALL_CAPS: It's probably a constant)
