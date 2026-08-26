@@ -1,0 +1,4 @@
+GET 
+@app.get("/")
+home()
+{"message" : "backend is running"}

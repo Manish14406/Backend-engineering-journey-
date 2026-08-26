@@ -1,0 +1,77 @@
+Day 8
+GET /tasks           ← 1. Get all
+GET /tasks/{id}      ← 2. Get one
+PUT /tasks/{id}      ← 3. Update
+DELETE /tasks/{id}   ← 4. Delete
+
+
+ POST
+
+Create NEW object
+      ↓
+db.add()
+      ↓
+commit
+
+ PUT
+ 
+Find EXISTING object
+      ↓
+Change it
+      ↓
+commit
+
+
+                                    A backend manages a RESOURCE.
+                                    Our resource = Task
+
+                                    CREATE
+                                    POST /tasks
+                                    → Receive data
+                                    → Validate with Pydantic
+                                    → Create SQLAlchemy object
+                                    → db.add()
+                                    → db.commit()
+                                    → Return created task
+
+                                    READ ALL
+                                    GET /tasks
+                                    → Get DB session
+                                    → Query Task table
+                                    → .all()
+                                    → Return all tasks
+
+                                    READ ONE
+                                    GET /tasks/{id}
+                                    → Get id from URL
+                                    → Find matching task
+                                    → If not found → 404
+                                    → Return task
+
+                                    UPDATE
+                                    PUT /tasks/{id}
+                                    → Get id from URL
+                                    → Find existing task
+                                    → If not found → 404
+                                    → Change its values
+                                    → db.commit()
+                                    → Return updated task
+
+                                    DELETE
+                                    DELETE /tasks/{id}
+                                    → Get id from URL
+                                    → Find existing task
+                                    → If not found → 404
+                                    → db.delete()
+                                    → db.commit()
+                                    → Return confirmation
+
+POST   → CREATE
+GET    → READ
+PUT    → UPDATE
+DELETE → DELETE
+
+CREATE → Build → Add → Commit
+READ   → Query → Return
+UPDATE → Find → Change → Commit → Return
+DELETE → Find → Delete → Commit

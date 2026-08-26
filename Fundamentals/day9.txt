@@ -1,0 +1,186 @@
+model vs schema 
+
+pydantic schema - validate the shape of api data ------API world 
+ 
+models - represent the database and how python code interacts with it ------Database world
+
+SCHEMA - API data 
+MODEL - Database data 
+
+
+Dependencies
+It allows the fast api to provide required resources or api endpoint automatically 
+ex : Depends(get_db) provides database session ensures the session is cleaned up after the request 
+
+main purpose ----avoid/creating managing the same resources manually at the endpoint 
+
+
+Routers ---- handle the request came from task 
+Services ---- what should happen when the service is created/updated/deleted
+
+Router
+ ↓
+Service
+ ↓
+Create Task
+ ↓
+Database
+
+router --- a create request arrived service, handle it 
+service ----that particular creation service is handled
+
+Router  → receives/directs request
+Service → performs business operation
+Model   → represents database data
+
+
+update- what my application does 
+put - http request sent to replace 
+
+                   CLIENT
+                   ↓
+                ROUTER
+                   ↓
+          ┌────────┴────────┐
+          ↓                 ↓
+       SCHEMA            SERVICE
+          ↓                 ↓
+     Validate          Business logic
+                            ↓
+                         MODEL
+                            ↓
+                        DATABASE
+
+
+
+Router ---- the request came in 
+Service --- what action should take place (place where we put application operation/business rules )
+Database --- what data to store  
+
+business logic --- example if the slot already booked dont allow another booking 
+
+
+SERVICE -- where the operation lies
+Business logic -- what the operation must decide 
+
+POST /bookings
+      ↓
+Booking Router
+      ↓
+Booking Service
+      ↓
+"Is this slot available?"
+      ↓
+"Is payment confirmed?"
+      ↓
+Create booking
+      ↓
+Database
+
+
+      ERROR HANDLING 
+
+REQUEST
+   ↓
+Is request valid?
+   ├── No → 4xx error
+   │
+   └── Yes
+        ↓
+   Can server complete it?
+        ├── No → 5xx error
+        │
+        └── Yes → 2xx success
+
+
+
+2xx → SUCCESS
+
+200 → Successful request
+201 → Resource successfully created
+
+
+4xx → CLIENT / REQUEST PROBLEM
+
+400 → Bad request
+401 → Not authenticated
+403 → Authenticated, but not allowed
+404 → Resource not found
+409 → Conflict with existing data
+422 → Validation failed
+
+
+5xx → SERVER PROBLEM
+
+500 → Unexpected server error   
+
+
+raise HTTPException(
+    status_code=404,
+    detail="Task not found"
+)
+
+
+CONFIGURATION AND .env
+.env = private/configurable values
+python code = application logic 
+-----------------------------------------------------------------------------------------
+pip install python-dotenv  ------python library which allows to read values from .env
+pip
+ ↓
+Python's package installer
+
+install
+ ↓
+"Download and install this library"
+
+python-dotenv
+ ↓
+The library that reads .env values
+
+------------------------------------------------------------------------------------------
+Development
+     ↓
+.env
+     ↓
+Local database
+
+------------------------------------------------------------------------------------------
+Production
+     ↓
+.env / server environment
+     ↓
+Production database
+------------------------------------------------------------------------------------------
+
+.env
+  │
+  │ DATABASE_URL=sqlite:///./task.db
+  ↓
+load_dotenv()
+  ↓
+os.getenv("DATABASE_URL")
+  ↓
+DATABASE_URL
+  ↓
+create_engine()
+  ↓
+SQLite database
+
+
+---------------------
+final configuration model 
+.env
+  ↓
+load_dotenv()
+  ↓
+os.getenv("DATABASE_URL")
+  ↓
+database.py
+  ↓
+SQLAlchemy
+  ↓
+Database
+
+venv/ → Python environment
+.env  → Configuration/secrets
