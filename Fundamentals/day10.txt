@@ -1,0 +1,178 @@
+Authentication vs Authorization 
+
+ Authentification - Who are you ?
+ Authorization    - What you are allowed to do 
+
+
+ Example: 
+ customer logs in --- authentification ----backend knows who the customer is ---- authorization admin login--- 403 forbidden
+
+                        Authentication
+                            ↓
+                        Password hashing
+                            ↓
+                        Registration
+                            ↓
+                        Login
+                            ↓
+                        JWT
+                            ↓
+                        Protected routes
+                            ↓
+                        Current user
+                            ↓
+                        Authorization / roles
+                            ↓
+                        Database relationships
+                            ↓
+                        Transactions
+                            ↓
+                        Testing
+                            ↓
+                        Build from requirements
+
+Password--Hashing it takes some input and converts it into fixed string of characters called hash
+ex : "hellp123" -----hashing----"ab23.....ahsd"
+
+Encryption is reversible but hashing is one way 
+
+conceptual understanding
+ enter password---password verfication --compare against stored hash--Match return yes else no 
+
+ ----------------------------------------------------------------------------------------------
+
+ Hashing theoritical 
+   input --- hash function ---- hash 
+   one way transformation, not meant to be decrypted, used for password storage,
+   salt makes 2 identical password create different hash
+
+    Password
+    +
+    Random Salt
+    ↓
+    Password Hash
+    ↓
+    Database
+----------------------------------------------------------------------------------------
+
+main flow I need to understand is user enters password -- password hashing + salt -----store hash in database 
+then later -- login enter password --- verify against stored hash correct enter else no 
+
+---------------------------------------------
+Registration endpoint 
+post/register
+Client
+  ↓
+Router
+  ↓
+UserCreate Schema
+  ↓
+Hash password
+  ↓
+User Model
+  ↓
+Database
+  ↓
+Safe response
+
+LOGIN
+  ↓
+Credentials correct
+  ↓
+Create JWT
+  ↓
+Give token to client
+  ↓
+Client stores token
+  ↓
+Future request
+  ↓
+Bearer token
+  ↓
+Backend verifies token
+  ↓
+Identify user
+-----------------------------------------------------
+JWT -JASON web token 
+It is a signed temporary pass assigned to the user after successfull autenfication. The client sents it with 
+the future request rather then sending the password repeatedly.   
+It contains the claims such as user id and expiry 
+
+JWT ----3 parts
+- Header -how is this token handled?
+- Payload - what information does it carry 
+- Signature - Has it been tampered with
+
+
+1. Header
+Contains information about the token, such as the signing algorithm.
+Conceptually:
+
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+2. Payload
+Contains claims about the user/token:
+{
+  "sub": "1",
+  "email": "test@gmail.com",
+  "exp": 1788000000
+}
+
+3. Signature
+The signature is used to verify that the token was created by someone possessing the correct signing secret/key and that the signed contents haven't been changed.
+Conceptually:
+Header
+   +
+Payload
+   +
+Secret/Key
+   ↓
+Signature
+
+----------------------
+Role : that tells bacekend that what category the user is, so that the backend can decide what this user is allowed to do
+
+This connects to Authentification and Authorization 
+JWT -- who are you ---user4 ---authorization--user4 ---role--What can you do---check the permission 
+
+                                  Login
+                                  ↓
+                                  JWT
+                                  ↓
+                                  Authentication
+                                  ↓
+                                  Identify User
+                                  ↓
+                                  Get Role
+                                  ↓
+                                  Authorization
+                                  ↓
+                                  Allow / Reject
+
+Main purpose of Role, without role backend might now the user but it doesnot know whether the user is owner,customer,admin,employee
+
+get_current_user()
+→ Authentication / identify user
+
+require_owner()
+→ Authorization / check role
+
+
+SQLAlchemy
+    ↓
+"What should my database look like?"
+
+Alembic
+    ↓
+"What changed since the previous version?"
+
+Migration
+    ↓
+"These are the exact database changes."
+
+Database
+    ↓
+"Apply those changes."
