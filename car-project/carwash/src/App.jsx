@@ -12,7 +12,7 @@ import ReviewModal from './components/ReviewModal';
 import Footer from './components/Footer';
 
 export default function App() {
-  const [selectedPlan, setSelectedPlan] = useState('');
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const [reviewModalState, setReviewModalState] = useState({
     isOpen: false,
     rating: 0

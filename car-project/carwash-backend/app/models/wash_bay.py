@@ -1,4 +1,5 @@
 from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy.orm import relationship
 
 from app.database import Base
 
@@ -22,4 +23,9 @@ class WashBay(Base):
         Boolean,
         nullable=False,
         default=True
+    )
+
+    bookings = relationship(
+        "Booking",
+        back_populates="wash_bay"
     )

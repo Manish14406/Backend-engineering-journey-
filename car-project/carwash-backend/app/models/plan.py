@@ -7,7 +7,11 @@ from app.database import Base
 class Plan(Base):
     __tablename__ = "plans"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
 
     name = Column(
         String(100),
@@ -40,4 +44,9 @@ class Plan(Base):
         "PlanFeature",
         back_populates="plan",
         cascade="all, delete-orphan"
+    )
+
+    bookings = relationship(
+        "Booking",
+        back_populates="plan"
     )

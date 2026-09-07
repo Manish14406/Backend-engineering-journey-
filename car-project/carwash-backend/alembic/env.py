@@ -6,23 +6,16 @@ from sqlalchemy import pool
 from alembic import context
 
 from app.database import Base
-from app.models import User
-
-from app.database import Base
 from app import models
 
-target_metadata = Base.metadata
 
-# Alembic Config object
 config = context.config
 
 
-# Configure logging
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 
-# SQLAlchemy metadata
 target_metadata = Base.metadata
 
 
@@ -52,7 +45,6 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-
         context.configure(
             connection=connection,
             target_metadata=target_metadata,

@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Date, ForeignKey, Integer, String, Time
+from datetime import datetime
+
+from sqlalchemy import Column, Date, DateTime, ForeignKey, Integer, String, Time
 from sqlalchemy.orm import relationship
 
 from app.database import Base
@@ -53,17 +55,27 @@ class Booking(Base):
     status = Column(
         String(30),
         nullable=False,
-        default="pending"
+        default="pending",
+        index=True
+    )
+
+    created_at = Column(
+        DateTime,
+        default=datetime.utcnow,
+        nullable=False
     )
 
     customer = relationship(
-        "User"
+        "User",
+        back_populates="bookings"
     )
 
     plan = relationship(
-        "Plan"
+        "Plan",
+        back_populates="bookings"
     )
 
     wash_bay = relationship(
-        "WashBay"
+        "WashBay",
+        back_populates="bookings"
     )
