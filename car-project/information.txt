@@ -1,0 +1,37 @@
+# Car Wash Booking Engine
+
+A production-oriented backend system for managing
+time-based car wash bookings and preventing booking conflicts.
+
+## Engineering Problem
+
+A wash center has:
+- limited wash bays
+- different service durations
+- operating hours
+- multiple customers
+
+The backend must ensure that bookings follow
+business rules and do not conflict.
+
+## What I Learned
+
+### 1. Domain Modeling
+Designed relationships between users, plans,
+wash bays, operating hours and bookings.
+
+### 2. Business Logic
+Implemented booking validation, availability
+checks and conflict detection.
+
+### 3. Data Integrity
+Used relational constraints, migrations and
+database-level design to maintain consistent data.
+
+### 4. Concurrency
+Analyzed the race condition where two requests
+attempt to reserve the same bay simultaneously.
+
+### 5. Testing
+Built tests around booking rules, conflicts,
+validation and authorization.

@@ -29,6 +29,6 @@ class PlanFeature(Base):
     )
 
     plan = relationship(
-        "Plan",
-        back_populates="features"
+    "Plan",
+    back_populates="features"
     )
